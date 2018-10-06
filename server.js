@@ -1,14 +1,11 @@
 const express = require('express');
-const app = expresS();
+const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io').listen(server);
+//const io = require('socket.io').listen(server);
 
-app.get('/', function (req, res) {
-    let watts = req.params.watts;
-    let rms = req.params.rms;
-    console.log(`watts: ${watts}`);
-    console.log(`rms: ${rms}`);
-});
+app.use(express.json());
+
+app.use('/', require('./routes/data.routes'));
 
 server.listen(3001, () => {
     console.log('Server initialized on port 3001');
