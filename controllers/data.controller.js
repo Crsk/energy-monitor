@@ -2,7 +2,6 @@ const dataController = {};
 const data = require('../models/data');
 
 dataController.getAll = async (req, res) => {
-    console.log('asd');
     let _data = await data.find();
     res.json(_data);
 };
