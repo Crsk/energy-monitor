@@ -347,7 +347,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "#value {\r\n    width: 100hw;\r\n    text-align: center;\r\n    font-size: 6em;\r\n    color: #028e64;\r\n    padding-top: 150px;\r\n}\r\np {\r\n    text-align: center;\r\n    color: #424242;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLGVBQWU7SUFDZixlQUFlO0lBQ2YsbUJBQW1CO0NBQ3RCO0FBQ0Q7SUFDSSxtQkFBbUI7SUFDbkIsZUFBZTtDQUNsQiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3ZhbHVlIHtcclxuICAgIHdpZHRoOiAxMDBodztcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgIGZvbnQtc2l6ZTogNmVtO1xyXG4gICAgY29sb3I6ICMwMjhlNjQ7XHJcbiAgICBwYWRkaW5nLXRvcDogMTUwcHg7XHJcbn1cclxucCB7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICBjb2xvcjogIzQyNDI0MjtcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -358,7 +358,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar>Energy Monitor</mat-toolbar>\n<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-md-2\"></div>\n    <div class=\"col-md-4\" *ngFor=\"let value of values\">\n      <p style=\"color: #121212\">\n        {{value}}\n      </p>\n    </div>\n    <div class=\"col-md-4\" *ngFor=\"let date of dates\">\n      <p style=\"color: #121212\">\n        {{date}}\n      </p>\n    </div>\n    <div class=\"col-md-2\"></div>\n  </div>\n  <div>\n    <canvas id=\"canvas\">\n      {{chart}}\n    </canvas>\n  </div>\n\n</div>"
+module.exports = "<mat-toolbar>Energy Monitor</mat-toolbar>\n<div id=\"value\">\n  {{lastValue}}\n</div>\n<p>last value</p>"
 
 /***/ }),
 
@@ -399,6 +399,7 @@ var AppComponent = /** @class */ (function () {
         this.data = [];
         this.values = [];
         this.dates = [];
+        this.lastValue = 0;
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -408,6 +409,7 @@ var AppComponent = /** @class */ (function () {
         });
         this.socket.on('data:value', function (value) {
             _this.values.push(value);
+            _this.lastValue = value;
         });
         this.socket.on('data:date', function (date) {
             var jsdate = new Date(date);

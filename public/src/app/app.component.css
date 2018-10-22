@@ -1,3 +1,11 @@
+#value {
+    width: 100hw;
+    text-align: center;
+    font-size: 6em;
+    color: #028e64;
+    padding-top: 150px;
+}
 p {
-    color: #222222;
+    text-align: center;
+    color: #424242;
 }

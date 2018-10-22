@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   data: Data[] = [];
   values: number[] = [];
   dates: string[] = [];
+  lastValue: number = 0;
 
   constructor(private dataService: DataService) {
   }
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
     });
     this.socket.on('data:value', value => {
       this.values.push(value);
+      this.lastValue = value;
     });
     this.socket.on('data:date', date => {
       let jsdate = new Date(date);
